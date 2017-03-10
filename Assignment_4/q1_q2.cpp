@@ -10,16 +10,36 @@ class GuessingGame {
 	private:
 		int maxvalue;
 		int answer;
+		int counter;
+		int maxguesses;
 };
 
 GuessingGame::GuessingGame(int maxval) {
 	maxvalue = maxval;
 	answer = rand() % maxvalue - 1;
+	maxguesses = 1;
+
+	counter = 0;
+
+	for(int j = maxval; j > 1;) {
+		j = j/2;
+		maxguesses += 1;
+	}
+	cout << "You have " << maxguesses << " guesses." << endl;
 }
 
 bool GuessingGame::guess(int guess) {
-	cout << "You guessed: " << guess << endl;
+	cout << "Guess: " << counter << endl;
 	
+	cout << "You guessed: " << guess << endl;
+
+	counter = counter + 1;
+
+	if(counter > maxguesses) {
+		cout << "No guesses remaining!" << endl << "The answer was: " << answer << endl;
+		return false;
+	}
+
 	if(guess == answer) return true;
 	else if(guess > answer) {
 		cout << "Too high!" << endl;
