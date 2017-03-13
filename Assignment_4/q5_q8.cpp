@@ -102,13 +102,16 @@ int countShapesByColour(Shape* shapes[], int size, Colour c) {
 }
 
 int main() {
-	Circle circles[] = {c1(100, 100, 100, 50, 50, 20),
-						c2(100, 100, 100, 50, 50, 20),
-						c3(100, 100, 100, 50, 50, 20),
-						c4(100, 200, 300, 50, 50, 20),
-						}
 	Colour testcolour(100, 100, 100);
-	countShapesByColour(circles, 4, testcolour);
+	Circle c1(100, 100, 100, 50, 50, 10);
+	Circle c2(100, 100, 100, 50, 50, 10);
+	Circle c3(100, 100, 100, 50, 50, 10);
+	Shape* circles[3];
+	circles[0] = &c1;
+	circles[1] = &c2;
+	circles[2] = &c3;
+
+	countShapesByColour(circles, 3, testcolour);
 
 	return 0;
 }
