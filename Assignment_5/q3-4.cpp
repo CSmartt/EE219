@@ -19,6 +19,7 @@ class DataArray {
 
 DataArray::DataArray(int size)
 	:	values	(new double[size]) {
+	arraysize = size;
 }
 
 DataArray::DataArray(double a[], int size)
@@ -26,15 +27,23 @@ DataArray::DataArray(double a[], int size)
 	for(int i = 0; i <= size; i++) {
 		values[i] = a[i];
 	}
+	arraysize = size;
 }
 
 double DataArray::min() {
+	return *std::min_element(values, values + arraysize);
 }
 
 double DataArray::max() {
+	return *std::max_element(values, values + arraysize);
 }
 
 DataArray DataArray::scaleBy(double factor) {
+	double scaled[arraysize];
+	for(int i = 0; i <= arraysize; i++) {
+		scaled[i] = values[i]*2;
+	}
+	return DataArray (scaled, arraysize);
 }
 
 DataArray::~DataArray() {
